@@ -1,0 +1,15 @@
+{
+    "name": "Automatic login",
+    "description": "Automatic login to some tools ...",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["storage"],
+    "options_page": "options.html",
+    "content_scripts": [{
+        "matches": ["https://miro.com/sso/login"],
+        "js": "js/miro.js"
+    },{
+        "matches": ["https://login.roomz.io/login"],
+        "js": "js/roomz.js"
+    }]
+  }
