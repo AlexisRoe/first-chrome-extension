@@ -1,12 +1,15 @@
-const input = document.querySelector('div .signup-submit-wrap > #email');
-const button = document.querySelector('div .signup-submit-wrap > button[data-testid=mr-form-sso-btn-signin-1]');
+const input = document.querySelector('#email');
+const button = document.querySelector('button[data-testid=mr-form-sso-btn-signin-1]');
 
-const emailAddress = chrome.storage.local.get(['miroEmailAddress'], (result) => result);
+chrome.storage.local.get(['email'], function (result) {
+    if (!input && button) return;
 
-if (emailAddress && typeof emailAddress === 'string') {
-    input.value = emailAddress;
-    button.click();
-}
+    const { email } = result;
+    if (!email || typeof email !== 'string') {
+        console.log('Please enter an email address in options');
+        return;
+    };
 
-console.log('Please enter an email address in options');
-
+    input.value = email;
+    button.click()
+});

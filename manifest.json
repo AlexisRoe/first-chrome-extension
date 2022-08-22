@@ -3,13 +3,36 @@
     "description": "Automatic login to some tools ...",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["storage"],
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
     "options_page": "options.html",
-    "content_scripts": [{
-        "matches": ["https://miro.com/sso/login"],
-        "js": "js/miro.js"
-    },{
-        "matches": ["https://login.roomz.io/login"],
-        "js": "js/roomz.js"
-    }]
-  }
+    "content_scripts": [
+        {
+            "matches": [
+                "https://miro.com/sso/login/*"
+            ],
+            "js": [
+                "js/miro.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://miro.com/de/login*",
+                "https://miro.com/en/login*"
+            ],
+            "js": [
+                "js/miro_login.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://login.roomz.io/login*"
+            ],
+            "js": [
+                "js/roomz.js"
+            ]
+        }
+    ]
+}
